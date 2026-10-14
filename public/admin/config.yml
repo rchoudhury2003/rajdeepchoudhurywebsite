@@ -2,7 +2,9 @@ backend:
   name: github
   repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
   branch: main
-  base_url: https://api.netlify.com           # free login proxy, no Netlify hosting needed
+  base_url: https://api.netlify.com 
+  site_domain: melodic-smakager-68a73e.netlify.app
+  # free login proxy, no Netlify hosting needed
 
 media_folder: "content/images"
 public_folder: "/content/images"
