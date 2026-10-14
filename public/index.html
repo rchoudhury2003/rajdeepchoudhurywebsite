@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rajdeep Choudhury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{
+  --ivory:#EFE3D6;--taupe:#CBBEB5;--cream:#FFF5E9;--gray-l:#BBBBBB;--gray-d:#AAAAAA;
+  --ink:#1c1a17;--mute:#6a6660;--line:rgba(0,0,0,.1);--accent:#8c8278;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ivory:#2a2622;--taupe:#3a342e;--cream:#221f1c;--gray-l:#4a4640;--gray-d:#55504a;
+  --ink:#f3efe9;--mute:#a39b90;--line:rgba(255,255,255,.12);--accent:#c9bdb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ivory:#2a2622;--taupe:#3a342e;--cream:#221f1c;--gray-l:#4a4640;--gray-d:#55504a;
+  --ink:#f3efe9;--mute:#a39b90;--line:rgba(255,255,255,.12);--accent:#c9bdb0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5em}
+body{margin:0;font-family:"Jost","Helvetica Neue",Arial,sans-serif;font-weight:300;color:var(--ink);
+  background:radial-gradient(60% 60% at 8% 0%,rgba(203,190,181,.55),transparent 70%),
+             radial-gradient(55% 60% at 100% 10%,rgba(187,187,187,.35),transparent 70%),
+             linear-gradient(180deg,var(--cream),var(--ivory));min-height:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.6rem}
+/* nav */
+header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+  padding:1.1em 1.6rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  background:rgba(255,245,233,.72);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+header .logo{font-weight:500;letter-spacing:.3em}
+nav{display:flex;gap:1.5em}
+nav button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;color:var(--mute);cursor:pointer;padding:.2em 0;border-bottom:2px solid transparent}
+nav button.on{color:var(--ink);border-color:var(--accent)}
+.menu-btn{display:none;background:none;border:0;font-size:1.1rem;color:var(--ink);cursor:pointer}
+/* cover */
+.cover{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  position:relative;padding:5em 1.5rem;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:0;top:-5%;height:85%;
+  background:radial-gradient(60% 50% at 70% 30%,rgba(203,190,181,.5),transparent 70%),
+             radial-gradient(50% 60% at 15% 60%,rgba(170,170,170,.5),transparent 70%),
+             linear-gradient(160deg,#8f857a,#302c28);
+  -webkit-mask-image:linear-gradient(#000 48%,transparent);mask-image:linear-gradient(#000 48%,transparent)}
+.cover h1{position:relative;font-size:clamp(2.1rem,8vw,4.6rem);font-weight:300;letter-spacing:.2em;margin:0;padding-left:.2em;line-height:1.1}
+.cover p{position:relative;margin:1.4em 0 0;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+.soc{position:relative;display:flex;gap:.7em;margin-top:1.3em}
+.soc a{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.4em 1em;background:rgba(255,255,255,.3)}
+.cue{position:absolute;bottom:2em;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+/* feed */
+main{padding:3em 0 5em}
+.feed-item{border-bottom:1px solid var(--line);padding:1.6em 0}
+.meta{display:flex;justify-content:space-between;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:.6em}
+.meta b{color:var(--ink);font-weight:500}
+.tag{border:1px solid var(--line);border-radius:99px;padding:0 .7em}
+.feed-item p{font-size:1.02rem;line-height:1.7;margin:0 0 .8em;max-width:60ch}
+.ph{position:relative;border-radius:.3em;overflow:hidden;background:var(--taupe);box-shadow:0 .6em 1.4em -.6em rgba(0,0,0,.3)}
+.ph::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.2),transparent 55%)}
+.p1{background:linear-gradient(160deg,#cbbeb5,#8c8278)}.p2{background:linear-gradient(200deg,#efe3d6,#aaa39a)}
+.p3{background:linear-gradient(140deg,#bbbbbb,#7d7d7d)}.p4{background:linear-gradient(190deg,#d8cdc2,#9a9088)}
+.photo{height:14em}.vidwrap{height:12em;background:#201d1b}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:3.2em;height:3.2em;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+.play::after{content:"";border-left:1em solid #111;border-top:.7em solid transparent;border-bottom:.7em solid transparent;margin-left:.3em}
+.link-out{font-size:.78rem;color:var(--accent)}
+/* section heads */
+.shead{padding:3.5em 0 1em}
+.shead h2{font-size:1.3rem;letter-spacing:.3em;text-transform:uppercase;font-weight:300;margin:0}
+.shead p{color:var(--mute);font-size:.88rem;margin:.4em 0 0}
+.subhead{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;margin:2em 0 .8em;color:var(--mute)}
+.subhead small{text-transform:none;letter-spacing:.05em;margin-left:.6em}
+/* gallery wall */
+.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6em;align-items:end}
+.wall .print{background:#fff;padding:.5em;box-shadow:0 .5em 1em -.4em rgba(0,0,0,.3);border-radius:.15em}
+.wall .print .ph{height:11em}
+.plaque{font-size:.72rem;color:var(--mute);margin-top:.5em}.plaque b{display:block;color:var(--ink);font-weight:400}
+.shelf{display:flex;gap:1em;margin-top:1.6em}
+.book{width:4.6em;height:6.4em;border-radius:.2em .5em .5em .2em;box-shadow:inset .35em 0 0 rgba(0,0,0,.15),0 .4em .8em -.4em rgba(0,0,0,.3);flex:none}
+/* films */
+.feat{height:13em;border-radius:.4em;position:relative;overflow:hidden;background:linear-gradient(135deg,#2a2622,#141210 70%)}
+.feat .play{z-index:2}
+.badge{position:absolute;left:1em;top:1em;background:var(--accent);color:#fff;border-radius:99px;padding:.2em .9em;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;z-index:3}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1em}
+.cards .vidwrap{height:7em}
+@media(min-width:620px){.cards{grid-template-columns:repeat(4,1fr)}}
+.piano-row{display:flex;gap:.8em;overflow-x:auto;padding-bottom:.4em}
+.piano-row .ph{height:5em;flex:0 0 7em}
+/* music */
+.mus{display:flex;align-items:center;gap:1.6em}
+.disc{width:7em;height:7em;border-radius:50%;background:conic-gradient(var(--gray-d),#201d1b,var(--gray-d),#201d1b);border:.4em solid var(--taupe);flex:none}
+.mus .btn{margin-right:.5em}
+/* about */
+.about{display:grid;grid-template-columns:1fr;gap:2em;align-items:center}
+@media(min-width:620px){.about{grid-template-columns:.8fr 1.3fr}}
+.about .ph{height:15em}
+.about p{font-size:1.02rem;line-height:1.75;margin:0 0 .9em;max-width:52ch}
+.sqlabel{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin:2.4em 0 .8em}
+.sqs{display:grid;grid-template-columns:repeat(2,1fr);gap:.9em}
+@media(min-width:620px){.sqs{grid-template-columns:repeat(5,1fr)}}
+.sq{aspect-ratio:1;border:1px solid var(--line);background:rgba(255,255,255,.3);border-radius:.4em;display:flex;flex-direction:column;justify-content:flex-end;padding:.8em;position:relative}
+.sq i{position:absolute;left:.8em;top:.8em;width:1.1em;height:1.1em;border-radius:50%;background:var(--accent)}
+.sq b{font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.sq small{font-size:.66rem;color:var(--mute);letter-spacing:.08em}
+.btn{display:inline-block;background:var(--ink);color:var(--cream);border-radius:99px;padding:.5em 1.4em;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.btn.g{background:transparent;color:var(--ink);border:1px solid var(--line)}
+footer{text-align:center;padding:2.5em 0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.hidden{display:none !important}
+@media(max-width:620px){nav{display:none}.menu-btn{display:block}
+  nav.open{display:flex;position:fixed;inset:0;top:3.4em;background:var(--cream);flex-direction:column;align-items:center;justify-content:center;gap:1.5em;font-size:1rem;z-index:19}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <span class="logo">RC</span>
+  <nav id="nav">
+    <button data-f="all" class="on">All</button>
+    <button data-f="photo">Photos</button>
+    <button data-f="film">Films</button>
+    <button data-f="music">Music</button>
+    <a href="#about"><button data-f="">About</button></a>
+  </nav>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</header>
+
+<section class="cover">
+  <h1>RAJDEEP<br>CHOUDHURY</h1>
+  <p>23 &nbsp;·&nbsp; Trying new things &nbsp;·&nbsp; Camera in hand</p>
+  <div class="soc"><a href="#" target="_blank">Instagram</a><a href="#" target="_blank">YouTube</a></div>
+  <div class="cue">Scroll ↓</div>
+</section>
+
+<main class="wrap">
+  <div id="feed"></div>
+
+  <div class="shead" id="photos-section"><h2>Photos</h2><p>Photobooks, one per place — and a few loose moments.</p></div>
+  <div class="wall">
+    <div><div class="print"><div class="ph photo p1"></div></div><div class="plaque"><b>Untitled</b>NYC · 2026</div></div>
+    <div><div class="print"><div class="ph photo p2"></div></div><div class="plaque"><b>Golden Hour</b>NYC · 2026</div></div>
+    <div><div class="print"><div class="ph photo p4"></div></div><div class="plaque"><b>Morning</b>Delhi · 2025</div></div>
+  </div>
+  <div class="subhead">Photobooks</div>
+  <div class="shelf"><div class="book p1"></div><div class="book p2"></div><div class="book p4"></div></div>
+  <p class="link-out" style="display:block;margin-top:1.4em">More on Instagram →</p>
+
+  <div class="shead" id="films-section"><h2>Films</h2><p>One pinned best film, then the rest.</p></div>
+  <div class="feat"><span class="badge">Start here</span><div class="play"></div></div>
+  <div class="subhead">Recent films</div>
+  <div class="cards">
+    <div class="vidwrap ph"><div class="play"></div></div>
+    <div class="vidwrap ph"><div class="play"></div></div>
+    <div class="vidwrap ph"><div class="play"></div></div>
+    <div class="vidwrap ph"><div class="play"></div></div>
+  </div>
+  <div class="subhead">Where it started <small>piano covers</small></div>
+  <div class="piano-row"><div class="ph p1"></div><div class="ph p2"></div><div class="ph p3"></div><div class="ph p4"></div></div>
+  <p class="link-out" style="display:block;margin-top:1.4em">Subscribe on YouTube →</p>
+
+  <div class="shead" id="music-section"><h2>Music</h2><p>I made a song once. Here it is.</p></div>
+  <div class="mus"><div class="disc"></div><div><div style="font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:.95rem">Song title</div>
+    <div style="color:var(--mute);font-size:.78rem;margin:.3em 0 1em">Released 20XX</div>
+    <a class="btn" href="#">Spotify</a><a class="btn g" href="#">Apple Music</a></div></div>
+
+  <div class="shead" id="about"><h2>About</h2></div>
+  <div class="about">
+    <div class="ph p3" style="aspect-ratio:3/4"></div>
+    <div><p>Hi, I'm Rajdeep. I'm 23, and I like trying things I've never tried before.</p>
+      <p>My camera comes along for most of it. Some of what I shoot turns into photos, some into films, and some just ends up written down here.</p>
+      <p>This site is where all of it lives, in the order it happened.</p>
+      <a class="btn" href="#">Instagram</a><a class="btn g" href="#">Email</a></div>
+  </div>
+  <div class="sqlabel">Find me elsewhere</div>
+  <div class="sqs">
+    <a class="sq" href="#"><i></i><b>Instagram</b><small>@handle</small></a>
+    <a class="sq" href="#"><i></i><b>YouTube</b><small>Channel</small></a>
+    <a class="sq" href="#"><i></i><b>Spotify</b><small>My song</small></a>
+    <a class="sq" href="#"><i></i><b>Apple Music</b><small>My song</small></a>
+    <a class="sq" href="mailto:"><i></i><b>Email</b><small>Say hi</small></a>
+  </div>
+</main>
+<footer>Made by Rajdeep · 2026</footer>
+
+<script>
+// Posts come from posts.json, built automatically from content/posts/*.json
+// (that's what the admin at /admin writes to). Nothing to edit here.
+let posts = [];
+const feed = document.getElementById('feed');
+function fmt(iso){ try{ return new Date(iso).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}); }catch(e){ return iso; } }
+function render(filter){
+  const list = posts.filter(p=>filter==='all'||p.type===filter);
+  feed.innerHTML = list.length ? list.map(p=>`
+    <div class="feed-item">
+      <div class="meta"><span><b>Rajdeep</b> · ${fmt(p.date)}</span><span class="tag">${p.type}</span></div>
+      <p>${p.text}${p.link?` <a class="link-out" href="${p.video_url||'#'}" target="_blank">${p.link} ↗</a>`:''}</p>
+      ${p.photo?`<div class="ph photo" style="background-image:url('${p.photo}');background-size:cover;background-position:center"></div>`:''}
+      ${p.video?`<a class="vidwrap ph" href="${p.video_url||'#'}" target="_blank"><div class="play"></div></a>`:''}
+    </div>`).join('') : `<p style="color:var(--mute);padding:2em 0">No posts yet — add your first one at <a class="link-out" href="/admin">/admin</a>.</p>`;
+}
+fetch('posts.json').then(r=>r.ok?r.json():[]).then(data=>{ posts = data; render('all'); }).catch(()=>render('all'));
+document.querySelectorAll('nav button[data-f]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    if(!btn.dataset.f) return;
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    render(btn.dataset.f);
+    document.querySelector('main').scrollIntoView({behavior:'smooth'});
+    nav.classList.remove('open');
+  });
+});
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+const nav=document.getElementById('nav');
+document.getElementById('menuBtn').addEventListener('click',()=>nav.classList.toggle('open'));
+</script>
+</body>
+</html>
