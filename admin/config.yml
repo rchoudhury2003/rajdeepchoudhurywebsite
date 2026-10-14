@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # <-- change this
+  branch: main
+  base_url: https://api.netlify.com           # free login proxy, no Netlify hosting needed
+
+media_folder: "content/images"
+public_folder: "/content/images"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Type", name: "type", widget: "select", options: ["photo", "film", "note", "music"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Text", name: "text", widget: "text" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Video link (YouTube URL)", name: "video_url", widget: "string", required: false }
+      - { label: "Link label", name: "link", widget: "string", required: false, default: "Watch on YouTube" }

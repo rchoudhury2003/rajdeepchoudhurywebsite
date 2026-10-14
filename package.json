@@ -1,0 +1,7 @@
+{
+  "name": "rajdeep-portfolio",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  }
+}
