@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # <-- change this
+  repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
   branch: main
   base_url: https://api.netlify.com           # free login proxy, no Netlify hosting needed
 
