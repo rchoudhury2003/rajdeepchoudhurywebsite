@@ -1,10 +1,9 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # <-- change this
+  repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
   branch: main
-  base_url: https://api.netlify.com           # free login proxy, no Netlify hosting needed
-  site_domain: YOUR-PLACEHOLDER-SITE.netlify.app  # <-- the random Netlify site where you installed the OAuth provider
-
+  base_url: https://small-mode-e377.choudhuryrajdeep24.workers.dev         # free login proxy, no Netlify hosting needed
+  
 media_folder: "content/images"
 public_folder: "/content/images"
 
