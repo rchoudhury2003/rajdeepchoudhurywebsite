@@ -1,10 +1,9 @@
 backend:
   name: github
-  repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # <-- change this
   branch: main
-  base_url: https://small-mode-e377.choudhuryrajdeep24.workers.dev 
-  site_domain: melodic-smakager-68a73e.netlify.app
-  # free login proxy, no Netlify hosting needed
+  base_url: https://api.netlify.com           # free login proxy, no Netlify hosting needed
+  site_domain: YOUR-PLACEHOLDER-SITE.netlify.app  # <-- the random Netlify site where you installed the OAuth provider
 
 media_folder: "content/images"
 public_folder: "/content/images"
@@ -23,3 +22,39 @@ collections:
       - { label: "Photo", name: "photo", widget: "image", required: false }
       - { label: "Video link (YouTube URL)", name: "video_url", widget: "string", required: false }
       - { label: "Link label", name: "link", widget: "string", required: false, default: "Watch on YouTube" }
+
+  - name: "photos"
+    label: "Gallery Photos"
+    folder: "public/content/photos"
+    create: true
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Place", name: "place", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+
+  - name: "photobooks"
+    label: "Photobooks"
+    folder: "public/content/photobooks"
+    create: true
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title (place name)", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Cover photo", name: "cover", widget: "image" }
+
+  - name: "films"
+    label: "Films"
+    folder: "public/content/films"
+    create: true
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "YouTube URL", name: "youtube_url", widget: "string" }
+      - { label: "Thumbnail (optional)", name: "thumbnail", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["travel", "piano"] }
+      - { label: "Pin as 'Start here' featured film", name: "featured", widget: "boolean", default: false }
