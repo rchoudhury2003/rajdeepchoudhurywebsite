@@ -1,11 +1,10 @@
 backend:
   name: github
-  repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
+  repo: rchoudhury2003/rajdeepchoudhurywebsite
   branch: main
-  base_url: https://rajdeep-cms-auth.choudhuryrajdeep24.workers.dev        # free login proxy, no Netlify hosting needed
-  
+  base_url: https://rajdeep-cms-auth.choudhuryrajdeep24.workers.dev
 
-  media_folder: "public/content/images"
+media_folder: "public/content/images"
 public_folder: "/content/images"
 
 collections:
@@ -15,11 +14,13 @@ collections:
     create: true
     format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "/public/content/images/posts"
+    public_folder: "/content/images/posts"
     fields:
       - { label: "Type", name: "type", widget: "select", options: ["photo", "film", "note", "music"] }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Text", name: "text", widget: "text" }
-      - { label: "Photo", name: "photo", widget: "image", required: false, media_folder: "/public/content/images/posts", public_folder: "/content/images/posts" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
       - { label: "Video link (YouTube URL)", name: "video_url", widget: "string", required: false }
       - { label: "Link label", name: "link", widget: "string", required: false, default: "Watch on YouTube" }
 
@@ -29,11 +30,13 @@ collections:
     create: true
     format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "/public/content/images/photos"
+    public_folder: "/content/images/photos"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Place", name: "place", widget: "string" }
       - { label: "Year", name: "year", widget: "string" }
-      - { label: "Photo", name: "image", widget: "image", media_folder: "/public/content/images/photos", public_folder: "/content/images/photos" }
+      - { label: "Photo", name: "image", widget: "image" }
 
   - name: "photobooks"
     label: "Photobooks"
@@ -41,10 +44,12 @@ collections:
     create: true
     format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    media_folder: "/public/content/images/photobooks"
+    public_folder: "/content/images/photobooks"
     fields:
       - { label: "Title (place name)", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "string" }
-      - { label: "Photos (first one is used as the cover)", name: "photos", widget: "list", field: { label: "Photo", name: "image", widget: "image", media_folder: "/public/content/images/photobooks", public_folder: "/content/images/photobooks" } }
+      - { label: "Photos (first one is used as the cover)", name: "photos", widget: "list", field: { label: "Photo", name: "image", widget: "image" } }
 
   - name: "films"
     label: "Films"
@@ -56,4 +61,3 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "YouTube URL", name: "youtube_url", widget: "string" }
       - { label: "Pin as 'Start here' featured film", name: "featured", widget: "boolean", default: false }
-
