@@ -2,7 +2,7 @@ backend:
   name: github
   repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
   branch: main
-  base_url: https://api.netlify.com 
+  base_url: https://small-mode-e377.choudhuryrajdeep24.workers.dev 
   site_domain: melodic-smakager-68a73e.netlify.app
   # free login proxy, no Netlify hosting needed
 
