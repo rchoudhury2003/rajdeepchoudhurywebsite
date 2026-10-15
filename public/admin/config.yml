@@ -12,7 +12,7 @@ public_folder: "/content/images"
 collections:
   - name: "posts"
     label: "Posts"
-    folder: "content/posts"
+    folder: "public/content/posts"
     create: true
     format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
