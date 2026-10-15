@@ -135,26 +135,17 @@ footer{text-align:center;padding:2.5em 0;font-size:.68rem;letter-spacing:.14em;t
   <div id="feed"></div>
 
   <div class="shead" id="photos-section"><h2>Photos</h2><p>Photobooks, one per place — and a few loose moments.</p></div>
-  <div class="wall">
-    <div><div class="print"><div class="ph photo p1"></div></div><div class="plaque"><b>Untitled</b>NYC · 2026</div></div>
-    <div><div class="print"><div class="ph photo p2"></div></div><div class="plaque"><b>Golden Hour</b>NYC · 2026</div></div>
-    <div><div class="print"><div class="ph photo p4"></div></div><div class="plaque"><b>Morning</b>Delhi · 2025</div></div>
-  </div>
+  <div class="wall" id="wall"></div>
   <div class="subhead">Photobooks</div>
-  <div class="shelf"><div class="book p1"></div><div class="book p2"></div><div class="book p4"></div></div>
+  <div class="shelf" id="shelf"></div>
   <p class="link-out" style="display:block;margin-top:1.4em">More on Instagram →</p>
 
   <div class="shead" id="films-section"><h2>Films</h2><p>One pinned best film, then the rest.</p></div>
-  <div class="feat"><span class="badge">Start here</span><div class="play"></div></div>
+  <div id="featFilm"></div>
   <div class="subhead">Recent films</div>
-  <div class="cards">
-    <div class="vidwrap ph"><div class="play"></div></div>
-    <div class="vidwrap ph"><div class="play"></div></div>
-    <div class="vidwrap ph"><div class="play"></div></div>
-    <div class="vidwrap ph"><div class="play"></div></div>
-  </div>
+  <div class="cards" id="recentFilms"></div>
   <div class="subhead">Where it started <small>piano covers</small></div>
-  <div class="piano-row"><div class="ph p1"></div><div class="ph p2"></div><div class="ph p3"></div><div class="ph p4"></div></div>
+  <div class="piano-row" id="pianoRow"></div>
   <p class="link-out" style="display:block;margin-top:1.4em">Subscribe on YouTube →</p>
 
   <div class="shead" id="music-section"><h2>Music</h2><p>I made a song once. Here it is.</p></div>
@@ -198,6 +189,32 @@ function render(filter){
     </div>`).join('') : `<p style="color:var(--mute);padding:2em 0">No posts yet — add your first one at <a class="link-out" href="/admin">/admin</a>.</p>`;
 }
 fetch('posts.json').then(r=>r.ok?r.json():[]).then(data=>{ posts = data; render('all'); }).catch(()=>render('all'));
+
+function img(url){ return `background-image:url('${url}');background-size:cover;background-position:center`; }
+function yt(url){ const m=(url||'').match(/(?:v=|youtu\.be\/|embed\/)([\w-]{6,})/); return m?m[1]:''; }
+
+fetch('photos.json').then(r=>r.ok?r.json():[]).then(data=>{
+  const wall = document.getElementById('wall');
+  wall.innerHTML = data.length ? data.map(p=>`
+    <div><div class="print"><div class="ph photo" style="${img(p.image)}"></div></div>
+    <div class="plaque"><b>${p.title||''}</b>${p.place||''} · ${p.year||''}</div></div>`).join('')
+    : `<p style="color:var(--mute)">No photos yet — add some from /admin.</p>`;
+}).catch(()=>{});
+
+fetch('photobooks.json').then(r=>r.ok?r.json():[]).then(data=>{
+  const shelf = document.getElementById('shelf');
+  shelf.innerHTML = data.map(b=>`<a class="book" title="${b.title} · ${b.year}" style="${img(b.cover)}"></a>`).join('');
+}).catch(()=>{});
+
+fetch('films.json').then(r=>r.ok?r.json():[]).then(data=>{
+  const featured = data.find(f=>f.featured) || data[0];
+  const feat = document.getElementById('featFilm');
+  feat.innerHTML = featured ? `<a class="feat" href="${featured.youtube_url}" target="_blank" style="${featured.thumbnail?img(featured.thumbnail):''}"><span class="badge">Start here</span><div class="play"></div></a>` : '';
+  const travel = data.filter(f=>f.category==='travel' && f!==featured);
+  document.getElementById('recentFilms').innerHTML = travel.map(f=>`<a class="vidwrap ph" href="${f.youtube_url}" target="_blank" style="${f.thumbnail?img(f.thumbnail):''}"><div class="play"></div></a>`).join('');
+  const piano = data.filter(f=>f.category==='piano');
+  document.getElementById('pianoRow').innerHTML = piano.map(f=>`<a class="ph" href="${f.youtube_url}" target="_blank" style="${f.thumbnail?img(f.thumbnail):''}"></a>`).join('');
+}).catch(()=>{});
 document.querySelectorAll('nav button[data-f]').forEach(btn=>{
   btn.addEventListener('click',()=>{
     if(!btn.dataset.f) return;
