@@ -2,7 +2,7 @@ backend:
   name: github
   repo: rchoudhury2003/rajdeepchoudhurywebsite   # <-- change this
   branch: main
-  base_url: https://small-mode-e377.choudhuryrajdeep24.workers.dev         # free login proxy, no Netlify hosting needed
+  base_url: https://rajdeep-cms-auth.choudhuryrajdeep24.workers.dev        # free login proxy, no Netlify hosting needed
   
 media_folder: "content/images"
 public_folder: "/content/images"
